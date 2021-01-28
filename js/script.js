@@ -23,21 +23,25 @@ for (let i = 0; i < 7; i++) {
 let lastQuotes = ['',''];
 
 // Insert data for each quote object in the quotes array.
-quotes[0].quote = `I would love to get paid to sleep. It would be a dream job`;
+quotes[0].quote = `I would love to get paid to sleep. It would be a dream job.`;
 quotes[0].source = '@dadsaysjokes';
 quotes[0].citation = 'Instagram';
+quotes[0].tags = '#dadjoke';
 
-quotes[1].quote = `My doctor told me I'm going deaf. The news was hard for me to hear`;
+quotes[1].quote = `My doctor told me I'm going deaf. The news was hard for me to hear.`;
 quotes[1].source = '@dadsaysjokes';
 quotes[1].citation = 'Instagram';
+quotes[1].tags = '#dadjoke';
 
 quotes[2].quote = `I have a friend who tried to take a selfie in the shower, but the image was too blurry. He has selfie steam issues.`;
 quotes[2].source = '@dadsaysjokes';
 quotes[2].citation = 'Instagram';
+quotes[2].tags = '#dadjoke';
 
 quotes[3].quote = `Her: I'm leaving. I'm sick of you wearing the same t-shirt every single day.<br>Me: Wait. I can change.`;
 quotes[3].source = '@dadsaysjokes';
 quotes[3].citation = 'Instagram';
+quotes[3].tags = '#dadjoke';
 
 quotes[4].quote = "Bring all of yourself to life. And if you're told you're 'too much', smile and think: maybe. Or maybe their capacity is too small.";
 quotes[4].source = 'Glennon Doyle';
@@ -83,20 +87,19 @@ function printQuote() {
     <p class="source">${quote.source}`;
 
   // Check for optional quote properties and append to HTML.
-  if (quote.citation) {
-    html += `<span class="citation">${quote.citation}</span>`;
-  };
+  
 
-  if (quote.year) {
-    html += `<span class="year">${quote.year}</span>`;
+  for (key in quote) {
+    if (key !== 'quote' && key !== 'source')
+    html += `<span class="${key}">${quote[key]}</span>`;
   };
-
   html += `</p>`;
 
   // Insert HTML to page and return HTML string.
   document.getElementById('quote-box').innerHTML = html; 
+  runChangeColor();
   return html;
-}             
+}    
 
 /***
  * click event listener for the print quote button
@@ -104,6 +107,25 @@ function printQuote() {
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+/**
+ * Automatically executes button action at a regular interval
+ * 
+ * Code adapted from: https://stackoverflow.com/questions/2133166/loop-timer-in-javascript
+ */
+function autoRefreshQuote() {
+  printQuote();
+}
+let tid = setInterval(autoRefreshQuote, 3000);
+
+/**
+ * Stops the timer
+ * 
+ * Code adapted from: https://stackoverflow.com/questions/2133166/loop-timer-in-javascript
+ */
+function abortTimer() { 
+  clearInterval(tid);
+}
 
 // change background color
 const backColors = [];
