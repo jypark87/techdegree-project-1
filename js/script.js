@@ -12,7 +12,7 @@ project 1 - A Random Quote Generator
  * @type {Array.<Object>}
 ***/
 const quotes = [];
-for (let i = 0; i < 7; i++) {
+for (let i = 0; i < 8; i++) {
   quotes.push({});
 }
 
