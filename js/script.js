@@ -29,8 +29,7 @@ quotes[2].quote = `I have a friend who tried to take a selfie in the shower, but
 quotes[2].source = '@dadsaysjokes';
 quotes[2].citation = 'Instagram';
 
-quotes[3].quote = `Her: I'm leaving. I'm sick of you wearing the same t-shirt every single day. 
-Me: Wait. I can change.`;
+quotes[3].quote = `Her: I'm leaving. I'm sick of you wearing the same t-shirt every single day.<br>Me: Wait. I can change.`;
 quotes[3].source = '@dadsaysjokes';
 quotes[3].citation = 'Instagram';
 
@@ -44,9 +43,6 @@ quotes[6].quote = "Go ahead, make my day.";
 quotes[6].source = 'Harry Callahan';
 quotes[6].citation = "Sudden Impact";
 quotes[6].year = 1983;
-
-quotes[7].quote = "Her: Test\n" +  "Me: Test";
-quotes[7].source = 'Test Author';
 
 /***
  * 
@@ -68,8 +64,9 @@ function printQuote() {
   let quote = getRandomQuote();
 
   // Construct HTML to display required quote properties.
-  let html = `<p class="quote">${quote.quote}</p>
-<p class="source">${quote.source}`;
+  let html = `
+    <p class="quote">${quote.quote}</p>
+    <p class="source">${quote.source}`;
 
   // Check for optional quote properties and append to HTML.
   if (quote.citation) {
