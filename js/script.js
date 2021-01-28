@@ -46,7 +46,7 @@ quotes[3].tags = '#dadjoke';
 quotes[4].quote = "Bring all of yourself to life. And if you're told you're 'too much', smile and think: maybe. Or maybe their capacity is too small.";
 quotes[4].source = 'Glennon Doyle';
 
-quotes[5].quote = "And suddenly you know... It's time to start somethign new and trust the magic of beginnings.";
+quotes[5].quote = "And suddenly you know... It's time to start something new and trust the magic of beginnings.";
 quotes[5].source = 'Meister Eckhart';
 
 quotes[6].quote = "Go ahead, make my day.";
