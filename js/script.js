@@ -8,26 +8,29 @@ project 1 - A Random Quote Generator
   // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
 
 /*** 
- * `quotes` array 
+ * Stores quote objects.
+ * @type {Array.<Object>}
 ***/
 const quotes = [];
 for (let i = 0; i < 7; i++) {
   quotes.push({});
 }
 
-quotes[0].quote = "I would love to get paid to sleep. It would be a dream job";
+// Insert data for each quote object in the quotes array.
+quotes[0].quote = `I would love to get paid to sleep. It would be a dream job`;
 quotes[0].source = '@dadsaysjokes';
 quotes[0].citation = 'Instagram';
 
-quotes[1].quote = "My doctor told me I'm going deaf. The news was hard for me to hear";
+quotes[1].quote = `My doctor told me I'm going deaf. The news was hard for me to hear`;
 quotes[1].source = '@dadsaysjokes';
 quotes[1].citation = 'Instagram';
 
-quotes[2].quote = "I have a friend who tried to take a selfie in the shower, but the image was too blurry. He has selfie steam issues.";
+quotes[2].quote = `I have a friend who tried to take a selfie in the shower, but the image was too blurry. He has selfie steam issues.`;
 quotes[2].source = '@dadsaysjokes';
 quotes[2].citation = 'Instagram';
 
-quotes[3].quote = "Her: I'm leaving. I'm sick of you wearing the same t-shirt every single day.\nMe: Wait. I can change.";
+quotes[3].quote = `Her: I'm leaving. I'm sick of you wearing the same t-shirt every single day. 
+Me: Wait. I can change.`;
 quotes[3].source = '@dadsaysjokes';
 quotes[3].citation = 'Instagram';
 
@@ -42,8 +45,14 @@ quotes[6].source = 'Harry Callahan';
 quotes[6].citation = "Sudden Impact";
 quotes[6].year = 1983;
 
+quotes[7].quote = "Her: Test\n" +  "Me: Test";
+quotes[7].source = 'Test Author';
+
 /***
- * `getRandomQuote` function
+ * 
+ * Returns a random quote from the quotes array.
+ * 
+ * @return {Object.<string, string, OPTIONAL string, OPTIONAL string>} A random quote object.
 ***/
 function getRandomQuote() {
   let i = Math.floor(Math.random() * quotes.length);
@@ -51,52 +60,34 @@ function getRandomQuote() {
 }
 
 /***
- * `printQuote` function
+ * Displays random quote to page.
+ * 
+ * @return {string} HTML for the random quote displayed on the page.
 ***/
 function printQuote() {
   let quote = getRandomQuote();
-  let html = `
-  <p class="quote"> ${quote.quote} </p>
-  <p class="source"> ${quote.source}
-  `;
 
+  // Construct HTML to display required quote properties.
+  let html = `<p class="quote">${quote.quote}</p>
+<p class="source">${quote.source}`;
+
+  // Check for optional quote properties and append to HTML.
   if (quote.citation) {
-    html += `  <span class="citation"> ${quote.citation} </span>`;
+    html += `<span class="citation">${quote.citation}</span>`;
   };
 
   if (quote.year) {
-    html += `  <span class="year"> ${quote.year} </span>`;
+    html += `<span class="year">${quote.year}</span>`;
   };
 
   html += `</p>`;
+
+  // Insert HTML to page and return HTML string.
   document.getElementById('quote-box').innerHTML = html; 
   return html;
-}
+}             
 
-// /**
-//  * Adds a new quote to global variable quote. 
-// >>>>>>>>>>>>> ?? IS THERE A PROPER WAY TO REFERENCE GLOBAL VAR "quote"?
-//  *
-//  * @param {string} quote - Text of the quote that will be displayed on the page
-//  * @param {string} source - Creator of the quote. 
-//  *                          Ex: "Mark Twain" or "Traditional Irish proverb” or "Anonymous".
-//  * @param {string} citation - Identifies where the quote comes from.
-//  *                            Ex: speech, publication or a movie. 
-//  * @param {number} year - Identifies the year of the quote. 
-// >>>>>>>>>>>>> ?? HOW DO YOU DOCUMENT THAT IT'S OPTIONAL? DEFAULT VALUES?
-//  *
-//  * @return {Object} A quote object.
-//  *
-//  * @example
-//  *
-//  *     foo('hello')
-//  */
-// function newQuote(text, source, citation, year) {
-//   let quote = {
-//     quote: text,
-//     source: source,
-//   };
-                
+console.log(printQuote());
 
 /***
  * click event listener for the print quote button
