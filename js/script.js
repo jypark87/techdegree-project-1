@@ -12,9 +12,15 @@ project 1 - A Random Quote Generator
  * @type {Array.<Object>}
 ***/
 const quotes = [];
-for (let i = 0; i < 8; i++) {
+for (let i = 0; i < 7; i++) {
   quotes.push({});
 }
+
+/*** 
+ * Stores last two quotes displayed.
+ * @type {String}
+***/
+let lastQuotes = ['',''];
 
 // Insert data for each quote object in the quotes array.
 quotes[0].quote = `I would love to get paid to sleep. It would be a dream job`;
@@ -51,12 +57,20 @@ quotes[6].year = 1983;
  * @return {Object.<string, string, OPTIONAL string, OPTIONAL string>} A random quote object.
 ***/
 function getRandomQuote() {
-  let i = Math.floor(Math.random() * quotes.length);
-  return quotes[i];
+  let newQuote = '';
+
+  do {
+    let i = Math.floor(Math.random() * quotes.length);
+    newQuote = quotes[i];
+  } while (lastQuotes.includes(newQuote));
+
+  lastQuotes.unshift(newQuote);
+  lastQuotes.pop();
+  return newQuote;
 }
 
 /***
- * Displays random quote to page.
+ * Displays random quote to page different from previous two quotes.
  * 
  * @return {string} HTML for the random quote displayed on the page.
 ***/
@@ -84,11 +98,48 @@ function printQuote() {
   return html;
 }             
 
-console.log(printQuote());
-
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+// change background color
+const backColors = [];
+backColors.push('rgb(58, 193, 98)');
+backColors.push('rgb(168, 50, 162)');
+backColors.push('rgb(0, 169, 247)');
+backColors.push('rgb(247, 198, 0)');
+backColors.push('rgb(38, 38, 38)');
+backColors.push('rgb(252, 70, 45)');
+
+// track last background color displayed
+let lastColors = ['rgb(58, 193, 98)',''];
+
+/***
+ * 
+ * Change background color to something different than the two previous colors.
+ * 
+ * @param {Array.<String>} colors Set of RGB colors.
+***/
+function changeColor(colors) { 
+  let newColor = '';
+  do {
+    let i = Math.floor(Math.random() * (colors.length));
+    newColor = colors[i]
+  } while (lastColors.includes(newColor));
+
+  lastColors.unshift(newColor);
+  lastColors.pop();
+  document.body.style.background = newColor;
+
+} 
+
+/***
+ * 
+ * Wrapper function for change background color
+***/
+function runChangeColor() { 
+  changeColor(backColors); 
+}     
