@@ -20,7 +20,7 @@ for (let i = 0; i < 7; i++) {
  * Stores last two quotes displayed.
  * @type {String}
 ***/
-let lastQuotes = ['',''];
+let lastQuotes = ['','',''];
 
 // Insert data for each quote object in the quotes array.
 quotes[0].quote = `I would love to get paid to sleep. It would be a dream job.`;
@@ -87,8 +87,6 @@ function printQuote() {
     <p class="source">${quote.source}`;
 
   // Check for optional quote properties and append to HTML.
-  
-
   for (key in quote) {
     if (key !== 'quote' && key !== 'source')
     html += `<span class="${key}">${quote[key]}</span>`;
@@ -96,11 +94,10 @@ function printQuote() {
   html += `</p>`;
 
   // Insert HTML to page and return HTML string.
+  changeColor(backColors);
   document.getElementById('quote-box').innerHTML = html; 
-  runChangeColor();
   return html;
 }    
-
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
@@ -108,15 +105,8 @@ function printQuote() {
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
 
-/**
- * Automatically executes button action at a regular interval
- * 
- * Code adapted from: https://stackoverflow.com/questions/2133166/loop-timer-in-javascript
- */
-function autoRefreshQuote() {
-  printQuote();
-}
-let tid = setInterval(autoRefreshQuote, 3000);
+//Automatically executes button action at a regular interval
+let tid = setInterval(printQuote, 5000);
 
 /**
  * Stops the timer
@@ -137,7 +127,7 @@ backColors.push('rgb(38, 38, 38)');
 backColors.push('rgb(252, 70, 45)');
 
 // track last background color displayed
-let lastColors = ['rgb(58, 193, 98)',''];
+let lastColors = ['rgb(58, 193, 98)','',''];
 
 /***
  * 
@@ -155,13 +145,4 @@ function changeColor(colors) {
   lastColors.unshift(newColor);
   lastColors.pop();
   document.body.style.background = newColor;
-
-} 
-
-/***
- * 
- * Wrapper function for change background color
-***/
-function runChangeColor() { 
-  changeColor(backColors); 
-}     
+}    
